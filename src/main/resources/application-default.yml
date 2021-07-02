@@ -1,0 +1,76 @@
+server:
+  port: 8066
+  host: "localhost:4200"
+  schema: http
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/virtudb
+    username: virtuuser
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate.ddl-auto: none
+
+#  mail:
+#    default-encoding: UTF-8
+#    host: smtp.yandex.ru
+#    port: 465
+#    username: fish@vstatusah.ru
+#    password: fish26061982
+#    protocol: smtps
+#    template-ext: ftl
+
+  liquibase:
+    change-log: classpath:/liquibase/virtu/db.changelog-master.xml
+
+realty:
+  typeKoeff:
+    -
+      name: Квартира
+      koeff: 1.7
+    -
+      name: Дом
+      koeff: 1.5
+    -
+      name: Комната
+      koeff: 1.3
+
+  yearBuilt:
+    -
+      max: 1999
+      koeff: 1.3
+    -
+      min: 2000
+      max: 2014
+      koeff: 1.6
+    -
+      min: 2015
+      koeff: 2
+
+  square:
+    -
+      max: 49.9
+      koeff: 1.2
+    -
+      min: 50
+      max: 100
+      koeff: 1.5
+    -
+      min: 101
+      koeff: 2
+
+#user:
+#  default.status: NOT_ACTIVE;
+
+#jwt:
+#  token:
+#    secret: secretkey1234567890abcdefghijklmnopqrstuvxyzsss
+#    expired: 3600000 # 1 hour
+#  refresh:
+#    expired: 5184000000 #60days
+#
+#
